@@ -18,7 +18,7 @@ attachments:
     pdf template file: small_claims_certificate_of_service_100_00260.pdf
     fields:
       - "COS_trial_court_county": ${ user_selected_county }
-      - "docket_number": ${ docket_number }
+      - "COS_docket_number": ${ docket_number }
       - "COS_plaintiff": |
           % if user_role == "plaintiff":
           ${ users[0] }
