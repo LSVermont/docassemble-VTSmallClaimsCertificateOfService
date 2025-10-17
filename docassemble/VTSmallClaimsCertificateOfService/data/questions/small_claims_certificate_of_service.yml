@@ -18,8 +18,19 @@ attachments:
     pdf template file: small_claims_certificate_of_service_100_00260.pdf
     fields:
       - "COS_trial_court_county": ${ user_selected_county }
-      - "COS_plaintiff": ${ users[0] }
-      - "COS_defendant": ${ other_parties.short_list(2) }
+      - "COS_docket_number": ${ docket_number }
+      - "COS_plaintiff": |
+          % if user_role == "plaintiff":
+          ${ users[0] }
+          % else:
+          ${ other_parties.short_list(2) if other_parties.number_gathered() > 1 else other_parties[0]}
+          % endif
+      - "COS_defendant": |
+          % if not user_role == "plaintiff":
+          ${ users[0] }
+          % else:
+          ${ other_parties.short_list(1) if other_parties.number_gathered() > 1 else other_parties[0]}
+          % endif
       - "COS_name_full": ${ attorneys[0] if user_has_attorney else users[0] }
       - "mailed_summons": 
       - "mailed_complaint": 
