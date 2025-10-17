@@ -2,7 +2,6 @@
 
 # add this to the user bundle: VT_small_claims_certificate_of_service_attachment
 
-
 ---
 objects:
   - attorneys: ALPeopleList.using(ask_number=True,target_number=1)
@@ -10,7 +9,7 @@ objects:
 ---
 objects:
   - VT_small_claims_certificate_of_service_attachment: ALDocument.using(title="Your Certificate of Service", filename="small_claims_certificate_of_service_100_00260.pdf", enabled=True, has_addendum=False)
-
+---
 attachments:
   - name: VT small claims certificate of service attachment
     filename: small_claims_certificate_of_service_100_00260.pdf    
@@ -60,4 +59,8 @@ attachments:
           % endif
       - "COS_phone_number": ${ phone_number_formatted(attorneys[0].daytime_phone_number) if user_has_attorney else phone_number_formatted(users[0].phone_number) }
       - "COS_email": ${ attorneys[0].email if user_has_attorney else users[0].email }
+---
+---
+code:
+  interview_order_VT_SC_COS == True
 ---
