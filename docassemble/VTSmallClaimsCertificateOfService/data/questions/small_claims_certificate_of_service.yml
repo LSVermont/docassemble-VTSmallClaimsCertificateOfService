@@ -22,11 +22,29 @@ attachments:
       - "COS_plaintiff": ${ users[0] }
       - "COS_defendant": ${ other_parties.short_list(2) }
       - "COS_name_full": ${ attorneys[0] if user_has_attorney else users[0] }
-      - "mailed_summons": Yes
-      - "mailed_complaint": Yes
-      - "mailed_info_and_instructions_for_defendant": Yes
-      - "mailed_blank_answer_form": Yes
+      - "mailed_summons": 
+      - "mailed_complaint": 
+      - "mailed_info_and_instructions_for_defendant": 
+      - "mailed_blank_answer_form": 
       - "mailed_documents_attached_to_complaint": 
+      - "mailed_answer": |
+          % if defined("was_sued"):
+          ${ True }
+          % else:
+          $ { False }
+          % endif
+      - "mailed_disclosure_exempt_income": |
+          % if len(has_exempt_income_state.true_values()) > 0:
+          ${ True }
+          % elif len(has_exempt_income_other.true_values()) > 0:
+          ${ True }
+          % elif otherwise_exempt != '':
+          ${ True }
+          % else:
+          $ { False }
+          % endif
+      - "other_document":
+      - "other_document_describe":
       - "COS_signer_name": ${ attorneys[0] if user_has_attorney else users[0] }
       - "COS_mailing_address_line_one": |
           % if defined("users[0].mailing_address.address"):
