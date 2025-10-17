@@ -62,5 +62,5 @@ attachments:
 ---
 ---
 code:
-  interview_order_VT_SC_COS == True
+  interview_order_VT_SC_COS = True
 ---
