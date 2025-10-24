@@ -53,8 +53,8 @@ attachments:
           % else:
           $ { False }
           % endif
-      - "other_document": ${ other_document }
-      - "other_document_describe": ${ other_document_describe }
+      - "other_document": ${ other_documents }
+      - "other_document_describe": ${ other_documents_describe }
       - "COS_signer_name": ${ attorneys[0] if user_has_attorney else users[0] }
       - "COS_mailing_address_line_one": |
           % if defined("users[0].mailing_address.address"):
