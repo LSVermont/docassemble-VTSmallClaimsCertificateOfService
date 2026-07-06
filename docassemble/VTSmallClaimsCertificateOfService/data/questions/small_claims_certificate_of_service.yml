@@ -7,6 +7,20 @@ objects:
   - attorneys: ALPeopleList.using(ask_number=True,target_number=1)
   - other_parties: ALPeopleList.using(object_type=ALIndividual, there_are_any=True, complete_attribute='complete')
 ---
+id: COS service date
+question: |
+  When did you "serve" your documents to the other party?
+subquestion: |
+  Any documents you give to the court must also be mailed to the other party or parties in the case. That is called serving your documents.
+  
+  What day did you mail the copies?
+fields:
+  - What date?: COS_service_date
+    datatype: date
+    required: False
+    default: |
+      ${ today() }
+---
 objects:
   - VT_small_claims_certificate_of_service_attachment: ALDocument.using(title="Your Certificate of Service", filename="small_claims_certificate_of_service_100_00260.pdf", enabled=True, has_addendum=False)
 ---
@@ -32,6 +46,21 @@ attachments:
           ${ other_parties.short_list(1) if other_parties.number_gathered() > 1 else other_parties[0]}
           % endif
       - "COS_name_full": ${ attorneys[0] if user_has_attorney else users[0] }
+      - "COS_service_date": ${ COS_service_date }
+      - "COS_other_parties_1_name": ${ other_parties[0].name }
+      - "COS_other_parties_1_address": |
+          % if defined("other_parties[0].mailing_address.address"):
+          ${ other_parties[0].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[0].address.on_one_line() }
+          % endif
+      - "COS_other_parties_2_name": ${ other_parties[1].name }
+      - "COS_other_parties_2_address": |
+          % if defined("other_parties[1].mailing_address.address"):
+          ${ other_parties[1].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[1].address.on_one_line() }
+          % endif
       - "mailed_summons": 
       - "mailed_complaint": 
       - "mailed_info_and_instructions_for_defendant": 
