@@ -64,6 +64,13 @@ attachments:
           % else:
           ${ other_parties[1].address.on_one_line() }
           % endif
+      - "COS_other_parties_3_name": ${ other_parties[2].name }
+      - "COS_other_parties_3_address": |
+          % if defined("other_parties[2].mailing_address.address"):
+          ${ other_parties[2].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[2].address.on_one_line() }
+          % endif
       - "mailed_summons": 
       - "mailed_complaint": 
       - "mailed_info_and_instructions_for_defendant": 
