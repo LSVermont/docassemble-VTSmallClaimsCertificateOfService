@@ -1,23 +1,26 @@
 [build-system]
 requires = [
-    "setuptools==80.9.0",
+    "setuptools>=80.9.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "docassemble.VTSmallClaimsCertificateOfService"
-version = "0.0.1"
+version = "2.0"
 description = "A docassemble extension."
 readme = "README.md"
 authors = [
     { name = "Legal Services Vermont", email = "ksurette@legalservicesvt.org" },
 ]
 dependencies = [
+    "docassemble.ALToolbox @ git+https://github.com/SuffolkLITLab/docassemble-ALToolbox.git@main",
     "docassemble.AssemblyLine @ git+https://github.com/SuffolkLITLab/docassemble-AssemblyLine.git@main",
+    "docassemble.VTFeedback @ git+https://github.com/VTskier/docassemble-VTFeedback.git@main",
+    "docassemble.VTSharedYMLFile @ git+https://github.com/LSVermont/docassemble-VTSharedYMLFile.git@main",
 ]
 
 [project.urls]
-Homepage = "https://docassemble.org"
+Homepage = "https://vtcourtforms.org"
 
 [tool.setuptools.packages.find]
 where = [

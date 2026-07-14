@@ -2,10 +2,27 @@
 
 # add this to the user bundle: VT_small_claims_certificate_of_service_attachment
 
+# this version includes the updated form from the courts as of June 2026
 ---
 objects:
   - attorneys: ALPeopleList.using(ask_number=True,target_number=1)
   - other_parties: ALPeopleList.using(object_type=ALIndividual, there_are_any=True, complete_attribute='complete')
+---
+#id: COS service date
+#question: |
+#  When did you "serve" your documents to the other party?
+#subquestion: |
+#  In addition to the court, you need to also send a copy of your Small Claims Answer form to the other party (the plaintiff). You should also send the Disclosure of Exempt Income form if that is part of your packet of forms.
+#
+#  When you mail these forms to the other party, that is called "serving" the other party.
+#  
+#  What day did you or will you mail the copies?
+#fields:
+#  - What date?: COS_service_date
+#    datatype: date
+#    required: False
+#    default: |
+#      ${ today() }
 ---
 objects:
   - VT_small_claims_certificate_of_service_attachment: ALDocument.using(title="Your Certificate of Service", filename="small_claims_certificate_of_service_100_00260.pdf", enabled=True, has_addendum=False)
@@ -32,6 +49,28 @@ attachments:
           ${ other_parties.short_list(1) if other_parties.number_gathered() > 1 else other_parties[0]}
           % endif
       - "COS_name_full": ${ attorneys[0] if user_has_attorney else users[0] }
+      - "COS_service_date": ${ COS_service_date }
+      - "COS_other_parties_1_name": ${ other_parties[0].name }
+      - "COS_other_parties_1_address": |
+          % if defined("other_parties[0].mailing_address.address"):
+          ${ other_parties[0].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[0].address.on_one_line() }
+          % endif
+      - "COS_other_parties_2_name": ${ other_parties[1].name }
+      - "COS_other_parties_2_address": |
+          % if defined("other_parties[1].mailing_address.address"):
+          ${ other_parties[1].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[1].address.on_one_line() }
+          % endif
+      - "COS_other_parties_3_name": ${ other_parties[2].name }
+      - "COS_other_parties_3_address": |
+          % if defined("other_parties[2].mailing_address.address"):
+          ${ other_parties[2].mailing_address.on_one_line() }
+          % else:
+          ${ other_parties[2].address.on_one_line() }
+          % endif
       - "mailed_summons": 
       - "mailed_complaint": 
       - "mailed_info_and_instructions_for_defendant": 
