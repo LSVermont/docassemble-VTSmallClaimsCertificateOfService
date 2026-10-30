@@ -97,7 +97,12 @@ attachments:
       - "other_document": ${ other_documents }
       - "other_document_describe": ${ other_documents_describe }
       - "COS_signature_date": ${ signature_date }
-      - "COS_printed_signature": ${ showifdef("attorneys[0]") if showifdef("user_has_attorney") else printed_signature }
+      - "COS_printed_signature": |
+          % if defined("user_has_attorney") and user_has_attorney:
+          ${ attorneys[0] }
+          % else:
+          ${ printed_signature }
+          % endif
       - "COS_signature": ${ users[0].signature }
       - "COS_mailing_address_line_one": |
           % if defined("users[0].mailing_address.address"):
