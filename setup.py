@@ -44,7 +44,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.VTSmallClaimsCertificateOfService',
-      version='2.0',
+      version='2.1',
       description=('A docassemble extension.'),
       long_description='# docassemble.VTSmallClaimsCertificateOfService\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nK. Surette, VTCourtForms / Legal Services Vermont\r\n\r\n',
       long_description_content_type='text/markdown',
@@ -53,7 +53,7 @@ setup(name='docassemble.VTSmallClaimsCertificateOfService',
       license='',
       url='https://vtcourtforms.org',
       packages=find_namespace_packages(),
-      install_requires=['docassemble.ALToolbox @ git+https://github.com/SuffolkLITLab/docassemble-ALToolbox.git@main', 'docassemble.AssemblyLine @ git+https://github.com/SuffolkLITLab/docassemble-AssemblyLine.git@main', 'docassemble.VTFeedback @ git+https://github.com/VTskier/docassemble-VTFeedback.git@main', 'docassemble.VTSharedYMLFile @ git+https://github.com/LSVermont/docassemble-VTSharedYMLFile.git@main'],
+      install_requires=['docassemble.AssemblyLine @ git+https://github.com/SuffolkLITLab/docassemble-AssemblyLine.git@main', 'docassemble.VTFeedback @ git+https://github.com/VTskier/docassemble-VTFeedback.git@main'],
       zip_safe=False,
       package_data=find_package_data(where='docassemble/VTSmallClaimsCertificateOfService/', package='docassemble.VTSmallClaimsCertificateOfService'),
      )

@@ -1,3 +1,5 @@
+# this is used in the Small Claims Complaint guided interview
+
 # include this yml file when you need to include a VT Small Claims Certificate of Service in your guided interview
 
 # add this to the user bundle: VT_small_claims_certificate_of_service_attachment
@@ -94,7 +96,7 @@ attachments:
           % endif
       - "other_document": ${ other_documents }
       - "other_document_describe": ${ other_documents_describe }
-      - "COS_signer_name": ${ attorneys[0] if user_has_attorney else users[0] }
+      - "COS_printed_signature": ${ attorneys[0] if user_has_attorney else printed_signature }
       - "COS_mailing_address_line_one": |
           % if defined("users[0].mailing_address.address"):
           ${ attorneys[0].address.line_one() if user_has_attorney else users[0].mailing_address.line_one() }
