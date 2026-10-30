@@ -96,7 +96,9 @@ attachments:
           % endif
       - "other_document": ${ other_documents }
       - "other_document_describe": ${ other_documents_describe }
-      - "COS_printed_signature": ${ attorneys[0] if user_has_attorney else printed_signature }
+      - "COS_signature_date": ${ signature_date }
+      - "COS_printed_signature": ${ showifdef("attorneys[0]") if showifdef("user_has_attorney") else printed_signature }
+      - "COS_signature": ${ users[0].signature }
       - "COS_mailing_address_line_one": |
           % if defined("users[0].mailing_address.address"):
           ${ attorneys[0].address.line_one() if user_has_attorney else users[0].mailing_address.line_one() }
