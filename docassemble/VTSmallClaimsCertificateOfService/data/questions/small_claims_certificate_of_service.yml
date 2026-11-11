@@ -51,7 +51,7 @@ attachments:
           ${ other_parties.short_list(1) if other_parties.number_gathered() > 1 else other_parties[0]}
           % endif
       - "COS_name_full": ${ attorneys[0] if user_has_attorney else users[0] }
-      - "COS_service_date": ${ COS_service_date }
+      - "COS_service_date": ${ signature_date }
       - "COS_other_parties_1_name": ${ other_parties[0].name }
       - "COS_other_parties_1_address": |
           % if defined("other_parties[0].mailing_address.address"):
